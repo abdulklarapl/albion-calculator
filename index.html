@@ -28,7 +28,7 @@
                             [16, 17],
                             [17, 18],
                             [18, 19],
-                            [19, 29],
+                            [19, 20],
                             [20, 21],
                             [21, 22],
                             [22, 0]
@@ -41,11 +41,6 @@
                         hour = datetime.getHours(),
                         startpoint = 0;
 
-                if (add >= tours.length) {
-                    addDays = Math.floor(add / tours.length);
-                    add = (add % tours.length);
-                }
-
                 for (var pos = 0; pos < tours.length; pos++) {
                     if (tours[pos][0] < hour && tours[pos][1] >= hour) {
                         startpoint = pos;
@@ -53,9 +48,14 @@
                     }
                 }
 
-                datetime.setDate(datetime.getDate() + addDays);
+                var targetIndex = startpoint+add+1;
+                if (targetIndex >= tours.length) {
+                    addDays = Math.floor(targetIndex / tours.length);
+                    targetIndex = ((targetIndex) % tours.length);
+                }
 
-                var targetDate = datetime.toISOString().slice(0, 10) + " między " + tours[add][0] + " a " + tours[add][1];
+                datetime.setDate(datetime.getDate() + addDays);
+                var targetDate = datetime.toISOString().slice(0, 10) + " między " + tours[targetIndex][0] + " a " + tours[targetIndex][1];
 
                 alert("Tury "+target+" spodziewaj się "+targetDate);
                 return false;
