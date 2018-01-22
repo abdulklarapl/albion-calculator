@@ -56,8 +56,8 @@
                 datetime.setDate(datetime.getDate() + addDays);
 
                 var targetDate = datetime.toISOString().slice(0, 10) + " między " + tours[add][0] + " a " + tours[add][1];
-                document.getElementById("response-container").classList.remove("hidden");
-                document.getElementById("response-text").innerText = document.getElementById("response-text").innerText.replace('{tour}', target).replace('{date}', targetDate);
+
+                alert("Tury "+target+" spodziewaj się "+targetDate);
                 return false;
             };
 
@@ -93,12 +93,6 @@
                     <button type="submit" class="btn btn-primary">oblicz</button>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="row hidden" id="response-container">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <p class="alert alert-success" id="response-text">Tury {tour} spodziewaj się {date}</p>
         </div>
     </div>
 </div>
