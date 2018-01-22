@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type='text/javascript'>
+        window.onload = function () {
+            var calculate = function (event) {
+                var
+                        tours = [
+                            [0, 2],
+                            [2, 4],
+                            [4, 6],
+                            [6, 7],
+                            [7, 8],
+                            [8, 9],
+                            [9, 10],
+                            [10, 11],
+                            [11, 12],
+                            [12, 13],
+                            [13, 14],
+                            [14, 15],
+                            [15, 16],
+                            [16, 17],
+                            [17, 18],
+                            [18, 19],
+                            [20, 21],
+                            [21, 22],
+                            [22, 0]
+                        ],
+                        current = document.getElementById("current").value,
+                        target = document.getElementById("target").value,
+                        add = target - current,
+                        addDays = 0,
+                        datetime = new Date(),
+                        hour = datetime.getHours(),
+                        startpoint = 0;
+
+                if (add >= tours.length) {
+                    addDays = Math.floor(add / tours.length);
+                    add = (add % tours.length);
+                }
+
+                for (var pos = 0; pos < tours.length; pos++) {
+                    if (tours[pos][0] < hour && tours[pos][1] >= hour) {
+                        startpoint = pos;
+                        break;
+                    }
+                }
+
+                datetime.setDate(datetime.getDate() + addDays);
+
+                var targetDate = datetime.toISOString().slice(0, 10) + " między " + tours[add][0] + " a " + tours[add][1];
+                document.getElementById("response-container").classList.remove("hidden");
+                document.getElementById("response-text").innerText = document.getElementById("response-text").innerText.replace('{tour}', target).replace('{date}', targetDate);
+                return false;
+            };
+
+            document.getElementById("form").onsubmit = calculate;
+        }
+
+    </script>
+    <style>
+        .row {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1>Kalkulator turowy</h1>
+            <p class="alert alert-info">
+                Kalkulator pomoże Ci obliczyć, o której godzinie powinieneś spodziewać się wybranej tury. <br>
+                W tym celu, należy podać aktualną turę oraz tę, której datę i godzinę chcesz poznać.
+            </p>
+            <form action="#" method="POST" id="form" class="form-inline">
+                <div class="form-group">
+                    <input type="number" id="current" class="form-control" placeholder="aktualna tura">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="target" class="form-control" placeholder="tura docelowa">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">oblicz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row hidden" id="response-container">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <p class="alert alert-success" id="response-text">Tury {tour} spodziewaj się {date}</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
