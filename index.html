@@ -11,7 +11,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script type='text/javascript'>
         window.onload = function () {
-            var calculate = function (event) {
+            var calculate = function () {
                 var
                         tours = [
                             [0, 2],
@@ -38,27 +38,24 @@
                         current = document.getElementById("current").value,
                         target = document.getElementById("target").value,
                         add = target - current,
-                        addDays = 0,
                         datetime = new Date(),
                         hour = datetime.getHours(),
-                        startpoint = 0;
+                        point = 0;
 
                 for (var pos = 0; pos < tours.length; pos++) {
                     if (tours[pos][0] < hour && tours[pos][1] >= hour) {
-                        startpoint = pos;
+                        point = pos;
                         break;
                     }
                 }
 
-                var targetIndex = startpoint+add+1;
-                if (targetIndex >= tours.length) {
-                    addDays = Math.floor(targetIndex / tours.length);
-                    targetIndex = ((targetIndex) % tours.length);
+                point = point+add;
+                if (point >= tours.length) {
+                    point = ((point) % tours.length);
+                    datetime.setDate(datetime.getDate() + Math.floor(point / tours.length));
                 }
 
-                datetime.setDate(datetime.getDate() + addDays);
-                var targetDate = datetime.toLocaleDateString().slice(0, 10) + " między " + tours[targetIndex][0] + " a " + tours[targetIndex][1];
-
+                var targetDate = datetime.toLocaleDateString().slice(0, 10) + " między " + tours[point][0] + " a " + tours[point][1];
                 alert("Tury "+target+" spodziewaj się "+targetDate);
                 return false;
             };
