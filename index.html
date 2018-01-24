@@ -57,7 +57,7 @@
                 }
 
                 datetime.setDate(datetime.getDate() + addDays);
-                var targetDate = datetime.toISOString().slice(0, 10) + " między " + tours[targetIndex][0] + " a " + tours[targetIndex][1];
+                var targetDate = datetime.toLocaleDateString().slice(0, 10) + " między " + tours[targetIndex][0] + " a " + tours[targetIndex][1];
 
                 alert("Tury "+target+" spodziewaj się "+targetDate);
                 return false;
