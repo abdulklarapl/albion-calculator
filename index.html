@@ -51,8 +51,8 @@
 
                 point = point+add;
                 if (point >= tours.length) {
-                    point = ((point) % tours.length);
                     datetime.setDate(datetime.getDate() + Math.floor(point / tours.length));
+                    point = ((point) % tours.length);
                 }
 
                 var targetDate = datetime.toLocaleDateString().slice(0, 10) + " między " + tours[point][0] + " a " + tours[point][1];
