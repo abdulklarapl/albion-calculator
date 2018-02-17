@@ -42,9 +42,8 @@
                         hour = datetime.getHours(),
                         point = 0;
 
-                for (var pos = 0; pos < tours.length; pos++) {
-                    if (tours[pos][0] <= hour && tours[pos][1] >= hour) {
-                        point = pos+1;
+                for (point; point < tours.length; point++) {
+                    if (tours[point][0] <= hour && tours[point][1] >= hour) {
                         break;
                     }
                 }
