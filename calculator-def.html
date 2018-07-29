@@ -14,14 +14,14 @@
         window.onload = function () {
             var calculate = function () {
                 var parts = {
-                            basic: document.getElementById("basic").value,
-                            armorBasic: document.getElementById("armor-basic").value,
-                            armorLevel: document.getElementById("armor-level").value,
-                            horseExtra: document.getElementById("horse-extra").value,
-                            horsePercent: document.getElementById("horse-percent").value,
-                            amulet: document.getElementById("amulet").value,
-                            children: document.getElementById("children").value,
-                            profExtra: document.getElementById("prof-extra").value
+                            basic: parseInt(document.getElementById("basic").value),
+                            armorBasic: parseInt(document.getElementById("armor-basic").value),
+                            armorLevel: parseInt(document.getElementById("armor-level").value),
+                            horseExtra: parseInt(document.getElementById("horse-extra").value),
+                            horsePercent: parseInt(document.getElementById("horse-percent").value),
+                            amulet: parseInt(document.getElementById("amulet").value),
+                            children: parseInt(document.getElementById("children").value),
+                            profExtra: parseInt(document.getElementById("prof-extra").value)
                         },
                     sum = (parts.basic+parts.horseExtra+parts.amulet+parts.armor)*((100+parts.armorLevel)/100)*((100+parts.profExtra+parts.children+parts.horsePercent)/100);
                 alert("suma: "+sum);
