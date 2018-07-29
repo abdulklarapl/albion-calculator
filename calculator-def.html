@@ -9,6 +9,27 @@
     <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        
+    <script type='text/javascript'>
+        window.onload = function () {
+            var calculate = function () {
+                var parts = {
+                            basic: document.getElementById("basic").value,
+                            armorBasic: document.getElementById("armor-basic").value,
+                            armorLevel: document.getElementById("armor-level").value,
+                            horseExtra: document.getElementById("horse-extra").value,
+                            horsePercent: document.getElementById("horse-percent").value,
+                            amulet: document.getElementById("amulet").value,
+                            children: document.getElementById("children").value,
+                            profExtra: document.getElementById("prof-extra").value
+                        },
+                    sum = (basic+horseExtra+amulet+armor)*((100+armorLevel)/100)*((100+profExtra+children+horsePercent)/100);
+                alert("suma: "+sum);
+                return false;
+            };
+            document.getElementById("form").onsubmit = calculate;
+        }
+    </script>
     <style>
         .row {
             margin-top: 15px;
@@ -25,19 +46,61 @@
             <p class="alert alert-info">
                 Kalkulator pomoże Ci obliczyć obronę i zużycie ko
             </p>
-            <form action="#" method="POST" id="form" class="form-inline">
-                <div class="form-group">
-                    <input type="number" id="basic" class="form-control" placeholder="obrona własna">
-                </div>
-                <div class="form-group">
-                    <input type="number" id="armor-basic" class="form-control" placeholder="obrona napierśnika">
-                </div>
-                <div class="form-group">
-                    <input type="number" id="armor-level" class="form-control" placeholder="poziom wyszkolenia napierśnika">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">oblicz</button>
-                </div>
+            <form action="#" method="POST" id="form">
+                <div class=container-fluid>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>Podstawa</h3>
+                            <div class="form-group">
+                                <input type="number" id="basic" class="form-control" placeholder="obrona własna">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="number" id="children" class="form-control" placeholder="ilość wychowanków">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="number" id="amulet" class="form-control" placeholder="amulet (obrona)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <select name="profExtra" placeholder="profesja">
+                                              <option value="0">stróż (nie)prawa</option>  
+                                              <option value="20">arcyłotr</option>
+                                              <option value="40">narbo</option>
+                                              <option value="10">kapłan</option>
+                                              <option value="30">philo</option>  
+                                              <option value="20">sishen</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h3>Uzbrojenie</h3>
+                            <div class="form-group">
+                                <input type="number" id="armor-basic" class="form-control" placeholder="obrona napierśnika">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="armor-level" class="form-control" placeholder="poziom wyszkolenia napierśnika">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">oblicz</button>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h3>Wierzchowiec</h3>
+                            <div class="form-group">
+                                <input type="number" id="horse-extra" class="form-control" placeholder="plus wierzchowca">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="number" id="horse-percent" class="form-control" placeholder="bonus wierzchowca (%)">
+                            </div>
+                        </div>
+                    </div>
+                </div
+                
             </form>
         </div>
     </div>
