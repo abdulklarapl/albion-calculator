@@ -23,7 +23,7 @@
                             children: parseInt(document.getElementById("children").value),
                             profExtra: parseInt(document.getElementById("prof-extra").value)
                         },
-                    sum = (parts.basic+parts.horseExtra+parts.amulet+parts.armor)*((100+parts.armorLevel)/100)*((100+parts.profExtra+parts.children+parts.horsePercent)/100);
+                    sum = (parts.basic+parts.horseExtra+parts.amulet+parts.armorBasic)*((100+parts.armorLevel)/100)*((100+parts.profExtra+parts.children+parts.horsePercent)/100);
                 alert("suma: "+sum);
                 return false;
             };
